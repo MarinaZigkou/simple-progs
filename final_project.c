@@ -24,7 +24,6 @@ int main()
         {
                 length = strlen(seq);       // Determining the length of the string 'seq'.
                 count = 0;                  // Setting the value of the variable named 'count' to zero.
-                seq2[0] = '\0';             // Initializing or clearing the string named 'seq2'.
 
 		/*
 		Checking whether the string correspond to a DNA sequence. 
@@ -42,7 +41,8 @@ int main()
                 }
                 if ( count < length )       // If anything other than the DNA bases is detected, 
 			                    // 'count' couldn't increase to reach the length of the string, 
-			                    // rendering the string invalid.
+			                    // rendering the string invalid. The program returns to the 
+					    // beginning to enter a new sequence.
                 {
                         printf("You did not enter a valid sequence\n");
                 }		
@@ -50,7 +50,8 @@ int main()
                 {
 			if (length <= 5)                          // Sequence with less than 6 bases, due to its short length, 
 				                                  // is ineligible as it lacks both a start codon and a stop 
-								  // codon, leading to its rejection.
+								  // codon, leading to its rejection. The program returns to the 
+								  // beginning to enter a new sequence.
 			{
 				printf("The sequence %s does not meet any of the requirements\n", seq );
 			}
@@ -61,17 +62,29 @@ int main()
                         	{
                         		if (seq[0] == 'A' && seq[1] == 'T' && seq[2] == 'G' )    // The sequence is examined to see if it starts with ATG.
                                 	{
-                                		if (seq[length-3] == 'T' && seq[length-2] == 'A' && seq[length-1] == 'A' )       // The sequence is examined to see if it ends with TAA.
+                                		if (seq[length-3] == 'T' && seq[length-2] == 'A' && seq[length-1] == 'A' )       // The sequence is examined to see if it ends with TAA. 
+																 // If it does the sequence is considered as a standard 
+																 // prokaryotic coding sequence with an ATG start codon 
+																 // and a TAA stop codon. The program returns to the 
+																 // beginning to enter a new sequence.
                                         	{
                                         		printf("The sequence %s starts with ATG and ends with TAA\n", seq );
                                                 	break;
                                         	}
                                         	else if (seq[length-3] == 'T' && seq[length-2] == 'A' && seq[length-1] == 'G' )  // The sequence is examined to see if it ends with TAG.
+																 // If it does the sequence is considered as a standard 
+																 // prokaryotic coding sequence with an ATG start codon 
+																 // and a TAG stop codon. The program returns to the 
+																 // beginning to enter a new sequence.
                                         	{
                                         		printf("The sequence %s starts with ATG and ends with TAG\n", seq );
                                                 	break;
                                         	}
                                         	else if (seq[length-3] == 'T' && seq[length-2] == 'G' && seq[length-1] == 'A' )  // The sequence is examined to see if it ends with TGA.
+																 // If it does the sequence is considered as a standard 
+																 // prokaryotic coding sequence with an ATG start codon 
+																 // and a TGA stop codon. The program returns to the 
+																 // beginning to enter a new sequence.
                                         	{
                                         		printf("The sequence %s starts with ATG and ends with TGA\n", seq );
                                                 	break;
@@ -154,11 +167,12 @@ int main()
 					}
 					if ( count2 == length-6 )    // If no stop codon is identified within the intermediate region, 
 						                     // the sequence is considered as a standard prokaryotic coding 
-						                     // sequence with an ATG start codon and a TAA stop codon.
+						                     // sequence with an ATG start codon and a TAA stop codon. The program
+								     // returns to the beginning to enter a new sequence.
 					{
 						printf("The sequence %s starts with ATG and ends with TAA\n", seq2 );
 					}
-					seq2[0] = '\0';              // Initializing or clearing the string named 'seq2'.
+					seq2[0] = '\0';              // Clearing the string named 'seq2'.
 				}
 				if ( seq3[0] != '\0' )     // If 'seq3' contains data, the intermediate region will be checked for stop codons.
 				{
@@ -189,11 +203,12 @@ int main()
 					}
 					if ( count2 == length-6 )     // If no stop codon is identified within the intermediate region, 
 						                      // the sequence is considered as a standard prokaryotic coding 
-						                      // sequence with an ATG start codon and a TAG stop codon.
+						                      // sequence with an ATG start codon and a TAG stop codon. The program
+							              // returns to the beginning to enter a new sequence.
                                 	{
                                         	printf("The sequence %s starts with ATG and ends with TAG\n", seq3 );
                                 	}
-					seq3[0] = '\0';              // Initializing or clearing the string named 'seq3'.
+					seq3[0] = '\0';              // Clearing the string named 'seq3'.
 				}
 				if ( seq4[0] != '\0' )     // If 'seq4' contains data, the intermediate region will be checked for stop codons.
                         	{
@@ -224,11 +239,12 @@ int main()
                                 	}
 					if ( count2 == length-6 )     // If no stop codon is identified within the intermediate region, 
 						                      // the sequence is considered as a standard prokaryotic coding 
-						                      // sequence with an ATG start codon and a TGA stop codon.
+						                      // sequence with an ATG start codon and a TGA stop codon. The program
+								      // returns to the beginning to enter a new sequence.
                                 	{
                                         	printf("The sequence %s starts with ATG and ends with TGA\n", seq4 );
                                 	}
-                                	seq4[0] = '\0';               // Initializing or clearing the string named 'seq4'.
+                                	seq4[0] = '\0';               // Clearing the string named 'seq4'.
 				}
 			}
 		}
